@@ -99,3 +99,20 @@ SELECT
 FROM
     users AS u
     LEFT JOIN bookings AS b ON u.user_id = b.user_id;
+
+-- =========================================================================
+-- Query 6
+-- =========================================================================
+SELECT
+    booking_id,
+    match_id,
+    total_cost
+FROM
+    bookings
+WHERE
+    total_cost > (
+        SELECT
+            avg(total_cost)
+        FROM
+            bookings
+    );
