@@ -39,11 +39,51 @@ CREATE TABLE bookings (
 -- =========================================================================
 -- Query 1
 -- =========================================================================
-select match_id, fixture, base_ticket_price from matches
-where tournament_category = 'Champions League' and  match_status = 'Available'
+SELECT
+    match_id,
+    fixture,
+    base_ticket_price
+FROM
+    matches
+WHERE
+    tournament_category = 'Champions League'
+    AND match_status = 'Available';
 
 -- =========================================================================
 -- Query 2
 -- =========================================================================
-select user_id, full_name, email from users
-where full_name like 'Tanvir%' or full_name ilike '%Haque%'
+SELECT
+    user_id,
+    full_name,
+    email
+FROM
+    users
+WHERE
+    full_name LIKE 'Tanvir%'
+    OR full_name ILIKE '%Haque%';
+
+-- =========================================================================
+-- Query 3
+-- =========================================================================
+SELECT
+    booking_id,
+    user_id,
+    match_id,
+    coalesce(payment_status, 'Action Required') AS systematic_status
+FROM
+    bookings
+WHERE
+    payment_status IS NULL;
+
+-- =========================================================================
+-- Query 4
+-- =========================================================================
+SELECT
+    booking_id,
+    full_name,
+    fixture,
+    total_cost
+FROM
+    bookings AS b
+    INNER JOIN users AS u ON b.user_id = u.user_id
+    INNER JOIN matches AS m ON b.match_id = m.match_id;
