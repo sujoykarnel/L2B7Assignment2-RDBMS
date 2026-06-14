@@ -13,10 +13,24 @@ CREATE TABLE Users (
 -- =========================================================================
 -- 2. CREATE MATCHES TABLE
 -- =========================================================================
-CREATE TABLE Matches (
+CREATE TABLE matches (
     match_id serial primary key,
     fixture varchar(100),
     tournament_category varchar(100),
     base_ticket_price decimal(10,2) check (base_ticket_price >= 0) ,
     match_status varchar(20) check (match_status in ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
+);
+
+
+-- =========================================================================
+-- 3. CREATE BOOKINGS TABLE
+-- =========================================================================
+CREATE TABLE bookings (
+    booking_id serial primary key,
+    user_id int references users(user_id),
+    match_id int references matches(match_id),
+    seat_number varchar(20),
+    payment_status varchar(20) check (payment_status in ('Pending', 'Confirmed', 'Cancelled', 'Refunded')),
+    total_cost decimal(10,2) check (total_cost >= 0)
+    
 );
