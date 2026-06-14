@@ -34,3 +34,11 @@ CREATE TABLE bookings (
     total_cost decimal(10,2) check (total_cost >= 0)
     
 );
+
+
+-- =========================================================================
+-- Query 1
+-- =========================================================================
+
+select match_id, fixture, base_ticket_price from matches
+where tournament_category like '%Champions League%' and  match_status = 'Available'
