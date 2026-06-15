@@ -1,4 +1,4 @@
-## #Football Ticket Booking System
+# Football Ticket Booking System
 
 - ERD
 - Query
