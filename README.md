@@ -1,5 +1,5 @@
 # Football Ticket Booking System
 
 - ERD
-- Query
+- Query (7)
 - Query Answer (Unlisted Video)
